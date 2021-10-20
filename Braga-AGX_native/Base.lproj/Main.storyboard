@@ -1,24 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Braga_AGX_native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hr5-b8-z2A">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uK1-VB-rio"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch and hold to mark the boundaries of the field in question, then click &quot;Show my NDVI&quot; when ready" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMM-ec-SlO">
+                                <rect key="frame" x="15" y="662" width="384" height="100"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-2g-gc8">
+                                <rect key="frame" x="15" y="762" width="384" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Show my NDVI">
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showNdviClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wYL-3p-Bsf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-OK-xKg">
+                                <rect key="frame" x="70" y="807" width="274" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Start over">
+                                    <color key="titleColor" systemColor="systemOrangeColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startOverClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dMm-O9-7jO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GVJ-ne-rQz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hr5-b8-z2A" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" id="BxC-fU-PVC"/>
+                            <constraint firstItem="pbX-OK-xKg" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" constant="70" id="FQE-6D-TVR"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="WMM-ec-SlO" secondAttribute="trailing" constant="15" id="GK0-Oc-5Og"/>
+                            <constraint firstItem="hr5-b8-z2A" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-44" id="HoI-HA-c14"/>
+                            <constraint firstItem="WMM-ec-SlO" firstAttribute="top" secondItem="hr5-b8-z2A" secondAttribute="bottom" id="KJ7-7j-4Jq"/>
+                            <constraint firstItem="SOh-2g-gc8" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" constant="15" id="MMS-gK-EUz"/>
+                            <constraint firstItem="hr5-b8-z2A" firstAttribute="centerX" secondItem="GVJ-ne-rQz" secondAttribute="centerX" id="QjM-Tp-wA1"/>
+                            <constraint firstItem="pbX-OK-xKg" firstAttribute="top" secondItem="SOh-2g-gc8" secondAttribute="bottom" id="TmX-rQ-dIj"/>
+                            <constraint firstItem="SOh-2g-gc8" firstAttribute="top" secondItem="WMM-ec-SlO" secondAttribute="bottom" id="Zrs-F4-GIT"/>
+                            <constraint firstItem="WMM-ec-SlO" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" constant="15" id="g25-iE-cdj"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="pbX-OK-xKg" secondAttribute="trailing" constant="70" id="gQP-Py-RiT"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="SOh-2g-gc8" secondAttribute="trailing" constant="15" id="gsQ-R8-xl7"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="bottom" secondItem="hr5-b8-z2A" secondAttribute="bottom" constant="200" id="uP1-57-doC"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="bottom" secondItem="WMM-ec-SlO" secondAttribute="bottom" constant="100" id="vcq-Bu-05a"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="hr5-b8-z2A" id="GdU-fb-vyh"/>
+                        <segue destination="ReY-NH-uxX" kind="showDetail" identifier="GoToImage" id="pRz-zP-qNx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="13.043478260869566" y="86.383928571428569"/>
+        </scene>
+        <!--View Controller For View Image-->
+        <scene sceneID="Ayl-De-4ph">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" providesPresentationContextTransitionStyle="YES" id="ReY-NH-uxX" customClass="ViewControllerForViewImage" customModule="Braga_AGX_native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="I0u-VJ-Xrf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-39-1oQ">
+                                <rect key="frame" x="107" y="321" width="200" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="SkI-uN-byW"/>
+                                    <constraint firstAttribute="height" constant="200" id="iG4-31-Buj"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="V9m-Of-pCU">
+                                <rect key="frame" x="197" y="411" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jS-KN-Jmc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="608"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" image="YES" adjustable="YES" allowsDirectInteraction="YES"/>
+                                </accessibility>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ce9-Ta-QKL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3jS-KN-Jmc" firstAttribute="top" secondItem="Ce9-Ta-QKL" secondAttribute="top" id="BpF-N6-2No"/>
+                            <constraint firstItem="zNX-39-1oQ" firstAttribute="centerX" secondItem="I0u-VJ-Xrf" secondAttribute="centerX" id="M8h-EV-9Ur"/>
+                            <constraint firstItem="zNX-39-1oQ" firstAttribute="centerX" secondItem="I0u-VJ-Xrf" secondAttribute="centerX" id="MsL-Q3-p0I"/>
+                            <constraint firstItem="zNX-39-1oQ" firstAttribute="centerY" secondItem="I0u-VJ-Xrf" secondAttribute="centerY" id="brg-UT-KEg"/>
+                            <constraint firstItem="zNX-39-1oQ" firstAttribute="centerY" secondItem="I0u-VJ-Xrf" secondAttribute="centerY" id="d6C-HO-F8T"/>
+                            <constraint firstItem="3jS-KN-Jmc" firstAttribute="bottom" secondItem="Ce9-Ta-QKL" secondAttribute="bottom" constant="-200" id="s1Q-5S-dGK"/>
+                            <constraint firstItem="Ce9-Ta-QKL" firstAttribute="bottom" secondItem="3jS-KN-Jmc" secondAttribute="bottom" id="u26-I9-F4h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="V9m-Of-pCU" id="9zA-OY-tUh"/>
+                        <outlet property="imageView" destination="3jS-KN-Jmc" id="byd-h3-Rkc"/>
+                        <outlet property="loadingView" destination="zNX-39-1oQ" id="ToL-4a-vis"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1mC-1Z-eUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023.1884057971015" y="85.714285714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
