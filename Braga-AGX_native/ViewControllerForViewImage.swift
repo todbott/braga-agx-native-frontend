@@ -19,24 +19,24 @@ class ViewControllerForViewImage: UIViewController  {
     var webView: WKWebView!
     
     
-    @IBOutlet weak var loadingView: UIView! {
-      didSet {
-        loadingView.layer.cornerRadius = 6
+
+    @IBOutlet var loadingView: UIView! {
+        didSet {
+          loadingView.layer.cornerRadius = 6
+        }
       }
-    }
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var imageView: UIImageView!
+  
+    @IBOutlet var imageView: UIImageView!
+    
     
     
     override func viewDidLoad() {
+      
         super.viewDidLoad()
         
-        webView = WKWebView()
-        view = webView
-
-        self.view.addSubview(imageView)
         showSpinner()
     
         
@@ -52,10 +52,10 @@ class ViewControllerForViewImage: UIViewController  {
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                print(json)
-                let imageURL = json["imageURL"] as! String
-                
+                //let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                //print(json)
+                //let imageURL = json["imageURL"] as! String
+                let imageURL = try "https://storage.googleapis.com/braga-agx-native/012654795295470989_2021-10-17.png"
                 
                 if let url = URL(string: imageURL) {
                     let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -63,7 +63,9 @@ class ViewControllerForViewImage: UIViewController  {
                         
                         DispatchQueue.main.async { /// execute on main thread
                             self.imageView.image = UIImage(data: tif_data)
-                            self.view.addSubview(self.imageView)
+                            print("image should be showing...")
+                            self.hideSpinner()
+                            
                         }
                     }
                     
@@ -75,6 +77,7 @@ class ViewControllerForViewImage: UIViewController  {
         })
         
         task.resume()
+        
         
 
         
