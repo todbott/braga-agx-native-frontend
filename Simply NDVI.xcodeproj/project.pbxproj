@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8D53ED52271AB00400DE3128 /* Build configuration list for PBXProject "Braga-AGX_native" */;
+			buildConfigurationList = 8D53ED52271AB00400DE3128 /* Build configuration list for PBXProject "Simply NDVI" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -287,13 +287,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QY925J82SU;
+				DEVELOPMENT_TEAM = 5X8BJ8TY3A;
 				INFOPLIST_FILE = "Braga-AGX_native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.braga-agx.agxactly.app.Braga-AGX-native";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simply-ndvi.agxactly.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -306,13 +306,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QY925J82SU;
+				DEVELOPMENT_TEAM = 5X8BJ8TY3A;
 				INFOPLIST_FILE = "Braga-AGX_native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.braga-agx.agxactly.app.Braga-AGX-native";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simply-ndvi.agxactly.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8D53ED52271AB00400DE3128 /* Build configuration list for PBXProject "Braga-AGX_native" */ = {
+		8D53ED52271AB00400DE3128 /* Build configuration list for PBXProject "Simply NDVI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D53ED69271AB03D00DE3128 /* Debug */,

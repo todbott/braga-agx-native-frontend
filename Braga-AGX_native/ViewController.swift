@@ -7,8 +7,9 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController  {
+class ViewController: UIViewController {
     
   
     @IBOutlet weak var InitialPopup: UIView! {
@@ -17,12 +18,9 @@ class ViewController: UIViewController  {
         }
       }
     
+    @IBOutlet weak var LetsStartButton: UIButton!
     @IBOutlet weak var FetchingLabel: UILabel!
-    @IBOutlet weak var ErrorMessage: UIView! {
-        didSet {
-          ErrorMessage.layer.cornerRadius = 50
-        }
-      }
+
     @IBOutlet private var mapView: MKMapView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var TouchAndHoldLabel: UILabel!
@@ -45,26 +43,26 @@ class ViewController: UIViewController  {
     var dateTaken = String()
     var weGood = String()
     
+    var locationManager: CLLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         InitialPopup.isHidden = true;
         StartOverButton.isHidden = true;
-        ErrorMessage.isHidden = true;
+        
+        mapView.delegate = self
+
+        InitialPopup.isHidden = false;
+        self.checkLocationAuthorization()
         
         hideSpinner()
-        //ShowNdviButton.isEnabled = false;
-        imageView.isHidden = true;
-        // Set initial location in Honolulu
 
-        let initialLocation = CLLocation(latitude: 21.4765, longitude: -157.9647)
-        mapView.centerToLocation(initialLocation)
-        mapView.mapType = .satellite
+        imageView.isHidden = true;
         
-        // Used to let the user define bounds of the area of interest
-        // but now, I chose to send the whole map image to the backend for NDVI
-        // so I commented this out for now
-        //let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        //self.view.addGestureRecognizer(longPressRecognizer)
+        mapView.mapType = .satellite
+
+        mapView.showsUserLocation = true
+
     }
     
     
@@ -85,17 +83,28 @@ class ViewController: UIViewController  {
             
             
             
+
+            let nePoint = CGPoint(x: mapView.bounds.maxX, y: mapView.bounds.origin.y)
+            let swPoint = CGPoint(x: mapView.bounds.minX, y: mapView.bounds.maxY)
             
-            theseCoords.append(p.ne.longitude) //top x
-            theseCoords.append(p.ne.latitude) // top y
+            let ne = mapView.convert(nePoint, toCoordinateFrom: mapView)
+            let sw = mapView.convert(swPoint, toCoordinateFrom: mapView)
+            
+            
+            theseCoords.append(ne.longitude) //top x
+            theseCoords.append(ne.latitude) // top y
             coords.append(theseCoords)
             theseCoords.removeAll()
-            theseCoords.append(p.sw.longitude) // bottom x
-            theseCoords.append(p.ne.latitude) // top y
+            theseCoords.append(sw.longitude) // bottom x
+            theseCoords.append(ne.latitude) // top y
             coords.append(theseCoords)
             theseCoords.removeAll()
-            theseCoords.append(p.sw.longitude) // bottom x
-            theseCoords.append(p.sw.latitude) // bottom y
+            theseCoords.append(ne.longitude) // top x
+            theseCoords.append(sw.latitude) // bottom y
+            coords.append(theseCoords)
+            theseCoords.removeAll()
+            theseCoords.append(sw.longitude) // bottom x
+            theseCoords.append(sw.latitude) // bottom y
             coords.append(theseCoords)
             
             print("The coords are \(coords)")
@@ -212,28 +221,11 @@ class ViewController: UIViewController  {
         mapView.isScrollEnabled  = true;
     }
     
-    @objc func longPressed(sender: UILongPressGestureRecognizer) {
-        print("longpressed")
-
-    
-        if (sender.state == .began) {
-            let touchLocation = sender.location(in: mapView)
-            let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
-            print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
-            coordinates.append(locationCoordinate)
-            let annotation = MKPointAnnotation()
-            let centerCoordinate = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude:locationCoordinate.longitude)
-            annotation.coordinate = centerCoordinate
-            annotation.title = "field boundary \(coordinates.count)"
-            mapView.addAnnotation(annotation)
-            
-            print(coordinates)
-            //if (coordinates.count > 2) {
-            //    ShowNdviButton.isEnabled = true;
-            //}
-        }
-        
+    @IBAction func letsStartClicked(button: UIButton) {
+        InitialPopup.isHidden = true;
     }
+    
+
     
     
     
@@ -247,36 +239,57 @@ class ViewController: UIViewController  {
         activityIndicator.stopAnimating()
         loadingView.isHidden = true
     }
-
-}
-
-
-
-private extension MKMapView {
-  func centerToLocation(
-    _ location: CLLocation,
-    regionRadius: CLLocationDistance = 1000
-  ) {
-    let coordinateRegion = MKCoordinateRegion(
-      center: location.coordinate,
-      latitudinalMeters: regionRadius,
-      longitudinalMeters: regionRadius)
-    setRegion(coordinateRegion, animated: true)
-  }
     
-typealias Edges = (ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D)
-
-
-    func edgePoints() -> Edges {
-          let nePoint = CGPoint(x: self.bounds.maxX, y: self.bounds.origin.y)
-    let swPoint = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
-    
-    let neCoord = self.convert(nePoint, toCoordinateFrom: self)
-    let swCoord = self.convert(swPoint, toCoordinateFrom: self)
-    
-    return (ne: neCoord, sw: swCoord)
+    func checkLocationAuthorization(authorizationStatus: CLAuthorizationStatus? = nil) {
+        switch (authorizationStatus ?? CLLocationManager.authorizationStatus()) { 
+        case .authorizedAlways, .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+        case .notDetermined:
+            if locationManager == nil {
+                locationManager = CLLocationManager()
+                locationManager!.delegate = self
+            }
+            locationManager!.requestWhenInUseAuthorization()
+        default:
+            print("Location Servies: Denied / Restricted")
+        }
     }
 }
 
 
 
+private extension MKMapView {
+
+    
+    typealias Edges = (ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D)
+        func edgePoints() -> Edges {
+            let nePoint = CGPoint(x: self.bounds.maxX, y: self.bounds.origin.y)
+            let swPoint = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
+            
+            let neCoord = self.convert(nePoint, toCoordinateFrom: self)
+            let swCoord = self.convert(swPoint, toCoordinateFrom: self)
+            print(neCoord)
+            return (ne: neCoord, sw: swCoord)
+        }
+}
+
+
+
+extension ViewController: MKMapViewDelegate, CLLocationManagerDelegate {
+
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let lam: CLLocationDistance = 1000
+        let lom: CLLocationDistance = 1000
+        let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: lam, longitudinalMeters: lom)
+        mapView.setRegion(region, animated: true)
+        print("region set")
+    }
+    
+    
+    
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.checkLocationAuthorization(authorizationStatus: status)
+    }
+
+}

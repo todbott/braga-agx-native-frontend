@@ -16,28 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hr5-b8-z2A">
-                                <rect key="frame" x="0.0" y="-44" width="414" height="756"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr5-b8-z2A">
+                                <rect key="frame" x="0.0" y="-44" width="414" height="806"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="uK1-VB-rio"/>
                                 </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoom in to the area of interest, then click 'Show my NDVI'" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMM-ec-SlO">
-                                <rect key="frame" x="15" y="719.5" width="384" height="42.5"/>
+                                <rect key="frame" x="15" y="764.5" width="384" height="42.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMb-Ka-lmd">
-                                <rect key="frame" x="35" y="98" width="344" height="754"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                            </view>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A9n-if-IFA">
-                                <rect key="frame" x="0.0" y="-44" width="414" height="756"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A9n-if-IFA">
+                                <rect key="frame" x="0.0" y="-44" width="414" height="806"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-2g-gc8">
-                                <rect key="frame" x="15" y="762" width="384" height="45"/>
+                                <rect key="frame" x="15" y="807" width="384" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Show my NDVI">
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,17 +43,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZnF-Ey-IHh">
-                                <rect key="frame" x="40" y="238" width="334" height="287"/>
+                                <rect key="frame" x="40" y="238" width="334" height="239"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-VM-vEA">
-                                        <rect key="frame" x="20.5" y="42" width="277.5" height="143.5"/>
-                                        <string key="text">Fetching sattelite data from the server, and  calculating the NDVI.  This may take up to several minutes, depending on the size of the field you selected.</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching sattelite data from the server. This may take a while, depending on the area selected." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-VM-vEA">
+                                        <rect key="frame" x="20.5" y="42" width="277.5" height="95.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SVe-N3-vqc">
-                                        <rect key="frame" x="110" y="195.5" width="114" height="71.5"/>
+                                        <rect key="frame" x="110" y="147.5" width="114" height="71.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SVe-N3-vqc" secondAttribute="height" multiplier="113:71" id="bbo-Kh-D4P"/>
                                         </constraints>
@@ -72,6 +67,38 @@
                                     <constraint firstItem="QPb-VM-vEA" firstAttribute="top" secondItem="ZnF-Ey-IHh" secondAttribute="top" constant="42" id="uBQ-l1-veP"/>
                                     <constraint firstAttribute="bottom" secondItem="SVe-N3-vqc" secondAttribute="bottom" constant="20" id="uyj-nz-jgK"/>
                                     <constraint firstAttribute="trailing" secondItem="QPb-VM-vEA" secondAttribute="trailing" constant="36" id="vfm-YF-REI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMb-Ka-lmd">
+                                <rect key="frame" x="35" y="98" width="344" height="754"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izo-Dr-5NP">
+                                        <rect key="frame" x="30" y="10" width="284" height="644"/>
+                                        <string key="text">NDVI is an important metric of crop health and crop cover.  This app uses the red and near-infrared bands from Landsat to calculate NDVI, with a resolution of 10 square meters.
+
+Areas of no vegetation/unhealth vegetation are shown in red, while areas of thick and healthy vegetation are shown in bright green.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okp-A9-Zx6">
+                                        <rect key="frame" x="80" y="596" width="184" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Let's start"/>
+                                        <connections>
+                                            <action selector="letsStartClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kgx-Mh-jdU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstItem="izo-Dr-5NP" firstAttribute="bottom" secondItem="Okp-A9-Zx6" secondAttribute="bottom" constant="10" id="0t9-sm-Hw5"/>
+                                    <constraint firstItem="Okp-A9-Zx6" firstAttribute="leading" secondItem="xMb-Ka-lmd" secondAttribute="leading" constant="80" id="Pu1-qi-ti2"/>
+                                    <constraint firstItem="izo-Dr-5NP" firstAttribute="top" secondItem="xMb-Ka-lmd" secondAttribute="top" constant="10" id="SRy-Ng-FWZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Okp-A9-Zx6" secondAttribute="trailing" constant="80" id="kgK-Wb-KwD"/>
+                                    <constraint firstItem="izo-Dr-5NP" firstAttribute="leading" secondItem="xMb-Ka-lmd" secondAttribute="leading" constant="30" id="q6Q-l1-PMQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="izo-Dr-5NP" secondAttribute="trailing" constant="30" id="xn3-oQ-KDk"/>
+                                    <constraint firstAttribute="bottom" secondItem="izo-Dr-5NP" secondAttribute="bottom" constant="100" id="zp6-s2-TKB"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-OK-xKg">
@@ -95,7 +122,7 @@
                             <constraint firstItem="SOh-2g-gc8" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" constant="15" id="MMS-gK-EUz"/>
                             <constraint firstItem="ZnF-Ey-IHh" firstAttribute="top" secondItem="GVJ-ne-rQz" secondAttribute="top" constant="150" id="Msi-4i-Xn0"/>
                             <constraint firstItem="hr5-b8-z2A" firstAttribute="centerX" secondItem="GVJ-ne-rQz" secondAttribute="centerX" id="QjM-Tp-wA1"/>
-                            <constraint firstItem="pbX-OK-xKg" firstAttribute="top" secondItem="SOh-2g-gc8" secondAttribute="bottom" id="TmX-rQ-dIj"/>
+                            <constraint firstItem="pbX-OK-xKg" firstAttribute="top" secondItem="SOh-2g-gc8" secondAttribute="top" id="TmX-rQ-dIj"/>
                             <constraint firstItem="SOh-2g-gc8" firstAttribute="top" secondItem="WMM-ec-SlO" secondAttribute="bottom" id="Zrs-F4-GIT"/>
                             <constraint firstItem="xMb-Ka-lmd" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" constant="35" id="ahh-vv-QIx"/>
                             <constraint firstItem="GVJ-ne-rQz" firstAttribute="bottom" secondItem="xMb-Ka-lmd" secondAttribute="bottom" constant="10" id="bSA-Wa-zv7"/>
@@ -105,11 +132,11 @@
                             <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="SOh-2g-gc8" secondAttribute="trailing" constant="15" id="gsQ-R8-xl7"/>
                             <constraint firstItem="xMb-Ka-lmd" firstAttribute="centerX" secondItem="WMM-ec-SlO" secondAttribute="centerX" id="hE3-Ky-QU9"/>
                             <constraint firstItem="WMM-ec-SlO" firstAttribute="leading" secondItem="SOh-2g-gc8" secondAttribute="leading" id="heq-5Z-iD9"/>
-                            <constraint firstItem="A9n-if-IFA" firstAttribute="bottom" secondItem="GVJ-ne-rQz" secondAttribute="bottom" constant="-150" id="iKd-to-XoN"/>
+                            <constraint firstItem="A9n-if-IFA" firstAttribute="bottom" secondItem="GVJ-ne-rQz" secondAttribute="bottom" constant="-100" id="iKd-to-XoN"/>
                             <constraint firstItem="A9n-if-IFA" firstAttribute="top" secondItem="hr5-b8-z2A" secondAttribute="top" id="jkb-Ai-Ky4"/>
                             <constraint firstItem="A9n-if-IFA" firstAttribute="leading" secondItem="GVJ-ne-rQz" secondAttribute="leading" id="m6o-X9-cob"/>
                             <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="A9n-if-IFA" secondAttribute="trailing" id="tK7-xX-dbD"/>
-                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="bottom" secondItem="hr5-b8-z2A" secondAttribute="bottom" constant="150" id="uP1-57-doC"/>
+                            <constraint firstItem="GVJ-ne-rQz" firstAttribute="bottom" secondItem="hr5-b8-z2A" secondAttribute="bottom" constant="100" id="uP1-57-doC"/>
                             <constraint firstItem="GVJ-ne-rQz" firstAttribute="trailing" secondItem="ZnF-Ey-IHh" secondAttribute="trailing" constant="40" id="vgk-cK-Uep"/>
                         </constraints>
                     </view>
@@ -118,6 +145,7 @@
                     <connections>
                         <outlet property="FetchingLabel" destination="QPb-VM-vEA" id="5UC-ie-IaW"/>
                         <outlet property="InitialPopup" destination="xMb-Ka-lmd" id="eQJ-qt-2XC"/>
+                        <outlet property="LetsStartButton" destination="Okp-A9-Zx6" id="IfG-e4-qMh"/>
                         <outlet property="ShowNdviButton" destination="SOh-2g-gc8" id="3Et-vV-82G"/>
                         <outlet property="StartOverButton" destination="pbX-OK-xKg" id="aW4-ov-yFO"/>
                         <outlet property="TouchAndHoldLabel" destination="WMM-ec-SlO" id="vPp-PU-wQ4"/>
