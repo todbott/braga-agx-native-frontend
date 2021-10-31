@@ -75,9 +75,9 @@ class ViewController: UIViewController {
     
     @IBAction func showNdviClicked(button: UIButton) {
                
-        if (mapView.camera.altitude > 5000) {
+        if (mapView.camera.altitude > 3000) {
          
-                let alert = UIAlertController(title: "Please zoom in", message: "NDVI images from this zoom level might take over 5 minutes to render.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Please zoom in", message: "NDVI images from this zoom level might take too long to render.", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
                 Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
             
