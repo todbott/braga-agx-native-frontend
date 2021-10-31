@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="pageSheet" id="BYZ-38-t0r" customClass="ViewController" customModule="Braga_AGX_native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="pageSheet" id="BYZ-38-t0r" customClass="ViewController" customModule="Simply_NDVI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,27 +43,26 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZnF-Ey-IHh">
-                                <rect key="frame" x="40" y="238" width="334" height="239"/>
+                                <rect key="frame" x="40" y="238" width="334" height="228"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching sattelite data from the server. This may take a while, depending on the area selected." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-VM-vEA">
-                                        <rect key="frame" x="20.5" y="42" width="277.5" height="95.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SVe-N3-vqc">
-                                        <rect key="frame" x="110" y="147.5" width="114" height="71.5"/>
+                                        <rect key="frame" x="110" y="136.5" width="114" height="71.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SVe-N3-vqc" secondAttribute="height" multiplier="113:71" id="bbo-Kh-D4P"/>
                                         </constraints>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching sattelite data from the server. This may take a while, depending on the area selected." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-VM-vEA">
+                                        <rect key="frame" x="52" y="42" width="246" height="64.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="SVe-N3-vqc" secondAttribute="trailing" constant="110" id="8kp-rD-aVb"/>
                                     <constraint firstItem="SVe-N3-vqc" firstAttribute="leading" secondItem="ZnF-Ey-IHh" secondAttribute="leading" constant="110" id="Iwz-Fi-05l"/>
                                     <constraint firstItem="QPb-VM-vEA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZnF-Ey-IHh" secondAttribute="leading" constant="20" symbolic="YES" id="Q6q-u4-6dQ"/>
-                                    <constraint firstItem="SVe-N3-vqc" firstAttribute="top" secondItem="QPb-VM-vEA" secondAttribute="bottom" constant="10" id="oXw-0u-HYC"/>
+                                    <constraint firstItem="SVe-N3-vqc" firstAttribute="top" secondItem="QPb-VM-vEA" secondAttribute="bottom" constant="30" id="oXw-0u-HYC"/>
                                     <constraint firstItem="QPb-VM-vEA" firstAttribute="top" secondItem="ZnF-Ey-IHh" secondAttribute="top" constant="42" id="uBQ-l1-veP"/>
                                     <constraint firstAttribute="bottom" secondItem="SVe-N3-vqc" secondAttribute="bottom" constant="20" id="uyj-nz-jgK"/>
                                     <constraint firstAttribute="trailing" secondItem="QPb-VM-vEA" secondAttribute="trailing" constant="36" id="vfm-YF-REI"/>
@@ -72,18 +71,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMb-Ka-lmd">
                                 <rect key="frame" x="35" y="98" width="344" height="754"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izo-Dr-5NP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izo-Dr-5NP">
                                         <rect key="frame" x="30" y="10" width="284" height="644"/>
                                         <string key="text">NDVI is an important metric of crop health and crop cover.  This app uses the red and near-infrared bands from Landsat to calculate NDVI, with a resolution of 10 square meters.
 
 Areas of no vegetation/unhealth vegetation are shown in red, while areas of thick and healthy vegetation are shown in bright green.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okp-A9-Zx6">
-                                        <rect key="frame" x="80" y="596" width="184" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okp-A9-Zx6">
+                                        <rect key="frame" x="80" y="648" width="184" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Let's start"/>
                                         <connections>
                                             <action selector="letsStartClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kgx-Mh-jdU"/>
@@ -92,7 +91,7 @@ Areas of no vegetation/unhealth vegetation are shown in red, while areas of thic
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
-                                    <constraint firstItem="izo-Dr-5NP" firstAttribute="bottom" secondItem="Okp-A9-Zx6" secondAttribute="bottom" constant="10" id="0t9-sm-Hw5"/>
+                                    <constraint firstItem="izo-Dr-5NP" firstAttribute="bottom" secondItem="Okp-A9-Zx6" secondAttribute="bottom" constant="-30" id="0t9-sm-Hw5"/>
                                     <constraint firstItem="Okp-A9-Zx6" firstAttribute="leading" secondItem="xMb-Ka-lmd" secondAttribute="leading" constant="80" id="Pu1-qi-ti2"/>
                                     <constraint firstItem="izo-Dr-5NP" firstAttribute="top" secondItem="xMb-Ka-lmd" secondAttribute="top" constant="10" id="SRy-Ng-FWZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Okp-A9-Zx6" secondAttribute="trailing" constant="80" id="kgK-Wb-KwD"/>

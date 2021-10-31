@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D53ED57271AB00400DE3128 /* Braga-AGX_native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Braga-AGX_native.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D53ED57271AB00400DE3128 /* Simply NDVI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simply NDVI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D53ED5A271AB00400DE3128 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D53ED5C271AB00400DE3128 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8D53ED5E271AB00400DE3128 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		8D53ED58271AB00400DE3128 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D53ED57271AB00400DE3128 /* Braga-AGX_native.app */,
+				8D53ED57271AB00400DE3128 /* Simply NDVI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			);
 			name = "Braga-AGX_native";
 			productName = "Braga-AGX_native";
-			productReference = 8D53ED57271AB00400DE3128 /* Braga-AGX_native.app */;
+			productReference = 8D53ED57271AB00400DE3128 /* Simply NDVI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,12 +289,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5X8BJ8TY3A;
 				INFOPLIST_FILE = "Braga-AGX_native/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.simply-ndvi.agxactly.app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Simply NDVI";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -308,12 +310,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5X8BJ8TY3A;
 				INFOPLIST_FILE = "Braga-AGX_native/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.simply-ndvi.agxactly.app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Simply NDVI";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

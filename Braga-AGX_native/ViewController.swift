@@ -43,17 +43,24 @@ class ViewController: UIViewController {
     var dateTaken = String()
     var weGood = String()
     
-    var locationManager: CLLocationManager?
-    
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         InitialPopup.isHidden = true;
         StartOverButton.isHidden = true;
         
-        mapView.delegate = self
-
+        //mapView.delegate = self
+        mapView.showsUserLocation = true
+        
         InitialPopup.isHidden = false;
-        self.checkLocationAuthorization()
+
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
         hideSpinner()
 
@@ -61,7 +68,7 @@ class ViewController: UIViewController {
         
         mapView.mapType = .satellite
 
-        mapView.showsUserLocation = true
+        
 
     }
     
@@ -78,7 +85,6 @@ class ViewController: UIViewController {
         
             // Get the visible rectangle of the map as 2 coords
             var coords = [Any]()
-            let p = mapView.edgePoints()
             var theseCoords = [Any]()
             
             
@@ -225,9 +231,6 @@ class ViewController: UIViewController {
         InitialPopup.isHidden = true;
     }
     
-
-    
-    
     
     private func showSpinner() {
         print("spinner should be showing")
@@ -240,56 +243,43 @@ class ViewController: UIViewController {
         loadingView.isHidden = true
     }
     
-    func checkLocationAuthorization(authorizationStatus: CLAuthorizationStatus? = nil) {
-        switch (authorizationStatus ?? CLLocationManager.authorizationStatus()) { 
-        case .authorizedAlways, .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-        case .notDetermined:
-            if locationManager == nil {
-                locationManager = CLLocationManager()
-                locationManager!.delegate = self
-            }
-            locationManager!.requestWhenInUseAuthorization()
-        default:
-            print("Location Servies: Denied / Restricted")
-        }
-    }
+    
+    
+    
 }
 
 
 
-private extension MKMapView {
-
-    
-    typealias Edges = (ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D)
-        func edgePoints() -> Edges {
-            let nePoint = CGPoint(x: self.bounds.maxX, y: self.bounds.origin.y)
-            let swPoint = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
-            
-            let neCoord = self.convert(nePoint, toCoordinateFrom: self)
-            let swCoord = self.convert(swPoint, toCoordinateFrom: self)
-            print(neCoord)
-            return (ne: neCoord, sw: swCoord)
-        }
-}
 
 
 
-extension ViewController: MKMapViewDelegate, CLLocationManagerDelegate {
+extension ViewController : CLLocationManagerDelegate {
 
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        let lam: CLLocationDistance = 1000
-        let lom: CLLocationDistance = 1000
-        let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: lam, longitudinalMeters: lom)
-        mapView.setRegion(region, animated: true)
-        print("region set")
-    }
-    
-    
-    
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        self.checkLocationAuthorization(authorizationStatus: status)
+        locationManager.requestLocation()
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(0.05), longitudeDelta: CLLocationDegrees(0.05))
+            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            manager.stopUpdatingLocation()
+        }
     }
 
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error.localizedDescription)")
+    }
 }
+
+
+
+
+
